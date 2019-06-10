@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <title>Horários</title>
+    
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    
+     <link href="dist/css/table.css" rel="stylesheet">
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <script src="dist/js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+ function page_disa() {
+        var url;
+        var location = document.getElementById("op").selectedIndex;
+        if (location == 0) {
+            alert('Por favor, selecione o número da linha!');
+            return false;
+        }
+        else if(location == 1){
+           
+            document.getElementById("btnHorario").dataset.target = "#modal1";
+        }
+        else if(location == 2){
+           
+            document.getElementById("btnHorario").dataset.target = "#modal2";
+        }
+         else if(location == 3){
+           
+            document.getElementById("btnHorario").dataset.target = "#modal3";
+        }
+         else {
+           
+            document.getElementById("btnHorario").dataset.target = "#modal4";
+        }
+       
+        
+    }
+</script>
+ 
+
+</head>
+
+<body>
+    
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    
+    <div id="main-wrapper">
+       
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- Isso é para a alternância da barra lateral visível apenas no celular -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+                        <b class="logo-icon p-l-10"> 
+                            <img src="assets/images/logo_itrans_branco.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <span class="logo-text">
+                            
+                             <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" /> 
+                        </span>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Fim Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                     
+                        
+                    </ul>
+                        
+                </div>
+            </nav>
+        </header>
+       
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Menu de navegação-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                        <li class="sidebar-item"> <a class="sidebar-link  sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Página Principal</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="eventos.html" aria-expanded="false"><i class="mdi mdi-alert-circle-outline"></i><span class="hide-menu">Alterações no trãnsito</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="horarios.html" aria-expanded="false"><i class="mdi mdi-clock"></i><span class="hide-menu">Horários</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="itinerario.html" aria-expanded="false"><i class="mdi mdi-arrow-expand"></i><span class="hide-menu">Itinerários</span></a></li>
+						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="mapa.html" aria-expanded="false"><i class="mdi mdi-map"></i><span class="hide-menu">Mapas de Itinerários</span></a></li>
+                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="perguntas.html" aria-expanded="false"><i class="mdi mdi-calendar-question"></i><span class="hide-menu">Perguntas Frequentes</span></a></li>
+						
+                    </ul>
+                </nav>
+                <!-- Fim Menu de navegação -->
+            </div>
+            <!-- Fim Sidebar scroll-->
+        </aside>
+      
+        <div class="page-wrapper">
+            
+            
+
+
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <h2 class="card-title">Horários</h2>
+                                <div class="form-group row">
+                                    <p style="margin-left: 10px;">Aqui você fica sabendo os horários dos ônibus que circulam na Grande BH.
+                                    </p>
+                                    <div class="col-md-9">
+                                        <select id="op" class="select2 form-control custom-select">
+                                                <option value="0" disabled selected>Selecione o número da linha</option> 
+                                                <option value="1">30   - Estação Diamante / Centro</option>
+                                                <option value="2">35   - Estação Barreiro / Centro</option> 
+                                                <option value="3">315  - Estação Barreiro / Barreiro</option>
+                                                <option value="4">6031 - Cidade Administrativa/Centro</option>
+                                        </select>
+                                        <p></p>
+                                        <button type="button" id="btnHorario" class="btn btn-primary" data-toggle="modal" data-target="" onclick="page_disa()">
+                                        Visualizar </button> 
+                                    </div>
+                                </div>
+                                
+                             </div>   
+                        </div>
+                    </div>
+                </div>
+               
+            </div>  <!-- End Container fluid  -->
+               
+              
+            
+        </div> <!-- Fim page-wrapper -->
+       
+    </div> <!-- Fim main-wrapper -->
+    
+    <!-- Modal 1-->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">30   - Estação Diamante / Centro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+                        <div class="ida col-md-12">
+                            <h3 class="text-center panel localsaida">Dias Úteis</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+<div class="divTableRow">
+<div class="divTableCell">04:15</div>
+<div class="divTableCell">04:35</div>
+<div class="divTableCell">04:50</div>
+<div class="divTableCell">05:05</div>
+<div class="divTableCell">05:15</div>
+<div class="divTableCell">05:23</div>
+<div class="divTableCell">05:28</div>
+<div class="divTableCell">05:35</div>
+<div class="divTableCell">05:42</div>
+<div class="divTableCell">05:47</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">05:52</div>
+<div class="divTableCell">05:56</div>
+<div class="divTableCell">06:00</div>
+<div class="divTableCell">06:04</div>
+<div class="divTableCell">06:08</div>
+<div class="divTableCell">06:12</div>
+<div class="divTableCell">06:16</div>
+<div class="divTableCell">06:20</div>
+<div class="divTableCell">06:24</div>
+<div class="divTableCell">06:28</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">06:32</div>
+<div class="divTableCell">06:36</div>
+<div class="divTableCell">06:40</div>
+<div class="divTableCell">06:44</div>
+<div class="divTableCell">06:48</div>
+<div class="divTableCell">06:52</div>
+<div class="divTableCell">06:56</div>
+<div class="divTableCell">07:00</div>
+<div class="divTableCell">07:05</div>
+<div class="divTableCell">07:10</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">07:15</div>
+<div class="divTableCell">07:20</div>
+<div class="divTableCell">07:25</div>
+<div class="divTableCell">07:30</div>
+<div class="divTableCell">07:35</div>
+<div class="divTableCell">07:40</div>
+<div class="divTableCell">07:45</div>
+<div class="divTableCell">07:50</div>
+<div class="divTableCell">07:56</div>
+<div class="divTableCell">08:03</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">08:10</div>
+<div class="divTableCell">08:18</div>
+<div class="divTableCell">08:26</div>
+<div class="divTableCell">08:34</div>
+<div class="divTableCell">08:42</div>
+<div class="divTableCell">08:50</div>
+<div class="divTableCell">09:00</div>
+<div class="divTableCell">09:10</div>
+<div class="divTableCell">09:20</div>
+<div class="divTableCell">09:32</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">09:44</div>
+<div class="divTableCell">09:56</div>
+<div class="divTableCell">10:06</div>
+<div class="divTableCell">10:18</div>
+<div class="divTableCell">10:30</div>
+<div class="divTableCell">10:40</div>
+<div class="divTableCell">10:50</div>
+<div class="divTableCell">11:00</div>
+<div class="divTableCell">11:14</div>
+<div class="divTableCell">11:29</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">11:42</div>
+<div class="divTableCell">11:52</div>
+<div class="divTableCell">12:00</div>
+<div class="divTableCell">12:07</div>
+<div class="divTableCell">12:14</div>
+<div class="divTableCell">12:24</div>
+<div class="divTableCell">12:32</div>
+<div class="divTableCell">12:40</div>
+<div class="divTableCell">12:48</div>
+<div class="divTableCell">12:56</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">13:05</div>
+<div class="divTableCell">13:15</div>
+<div class="divTableCell">13:25</div>
+<div class="divTableCell">13:35</div>
+<div class="divTableCell">13:45</div>
+<div class="divTableCell">13:55</div>
+<div class="divTableCell">14:04</div>
+<div class="divTableCell">14:12</div>
+<div class="divTableCell">14:20</div>
+<div class="divTableCell">14:28</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">14:36</div>
+<div class="divTableCell">14:44</div>
+<div class="divTableCell">14:52</div>
+<div class="divTableCell">15:00</div>
+<div class="divTableCell">15:07</div>
+<div class="divTableCell">15:14</div>
+<div class="divTableCell">15:21</div>
+<div class="divTableCell">15:28</div>
+<div class="divTableCell">15:35</div>
+<div class="divTableCell">15:42</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">15:48</div>
+<div class="divTableCell">15:56</div>
+<div class="divTableCell">16:03</div>
+<div class="divTableCell">16:09</div>
+<div class="divTableCell">16:17</div>
+<div class="divTableCell">16:25</div>
+<div class="divTableCell">16:32</div>
+<div class="divTableCell">16:38</div>
+<div class="divTableCell">16:44</div>
+<div class="divTableCell">16:50</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">16:56</div>
+<div class="divTableCell">17:02</div>
+<div class="divTableCell">17:08</div>
+<div class="divTableCell">17:13</div>
+<div class="divTableCell">17:14</div>
+<div class="divTableCell">17:19</div>
+<div class="divTableCell">17:26</div>
+<div class="divTableCell">17:32</div>
+<div class="divTableCell">17:35</div>
+<div class="divTableCell">17:41</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">17:47</div>
+<div class="divTableCell">17:51</div>
+<div class="divTableCell">17:58</div>
+<div class="divTableCell">18:05</div>
+<div class="divTableCell">18:14</div>
+<div class="divTableCell">18:23</div>
+<div class="divTableCell">18:33</div>
+<div class="divTableCell">18:39</div>
+<div class="divTableCell">18:49</div>
+<div class="divTableCell">18:59</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">19:08</div>
+<div class="divTableCell">19:18</div>
+<div class="divTableCell">19:28</div>
+<div class="divTableCell">19:37</div>
+<div class="divTableCell">19:48</div>
+<div class="divTableCell">20:00</div>
+<div class="divTableCell">20:15</div>
+<div class="divTableCell">20:25</div>
+<div class="divTableCell">20:35</div>
+<div class="divTableCell">20:45</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">20:55</div>
+<div class="divTableCell">21:05</div>
+<div class="divTableCell">21:13</div>
+<div class="divTableCell">21:21</div>
+<div class="divTableCell">21:29</div>
+<div class="divTableCell">21:37</div>
+<div class="divTableCell">21:45</div>
+<div class="divTableCell">21:56</div>
+<div class="divTableCell">22:10</div>
+<div class="divTableCell">22:30</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">22:50</div>
+<div class="divTableCell">23:10</div>
+<div class="divTableCell">23:30</div>
+<div class="divTableCell">23:45</div>
+                            </div>
+
+                            </div>
+                            </div>
+                        </div>
+                        <div class="volta col-md-12">
+                            <h3 class="text-center panel localsaida">Sábados e Domingos</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+                            <div class="divTableRow">
+<div class="divTableCell">06:04</div>
+<div class="divTableCell">06:13</div>
+<div class="divTableCell">06:22</div>
+<div class="divTableCell">06:30</div>
+<div class="divTableCell">06:38</div>
+<div class="divTableCell">06:47</div>
+<div class="divTableCell">06:57</div>
+<div class="divTableCell">07:04</div>
+<div class="divTableCell">07:14</div>
+<div class="divTableCell">07:25</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">07:35</div>
+<div class="divTableCell">07:45</div>
+<div class="divTableCell">07:55</div>
+<div class="divTableCell">08:09</div>
+<div class="divTableCell">08:24</div>
+<div class="divTableCell">08:36</div>
+<div class="divTableCell">08:49</div>
+<div class="divTableCell">09:02</div>
+<div class="divTableCell">09:13</div> 
+<div class="divTableCell">09:24</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">09:35</div>
+<div class="divTableCell">09:50</div>
+<div class="divTableCell">10:07</div>
+<div class="divTableCell">10:22</div>
+<div class="divTableCell">10:36</div>
+<div class="divTableCell">10:52</div>
+<div class="divTableCell">11:10</div>
+<div class="divTableCell">11:24</div>
+<div class="divTableCell">11:40</div>
+<div class="divTableCell">11:56</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">12:10</div>
+<div class="divTableCell">12:26</div>
+<div class="divTableCell">12:41</div>
+<div class="divTableCell">12:56</div>
+<div class="divTableCell">13:09</div>
+<div class="divTableCell">13:20</div>
+<div class="divTableCell">13:37</div>
+<div class="divTableCell">13:54</div>
+                            </div>
+
+                            </div>
+                            </div>
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>    
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2-->
+
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">35 - Estação Barreiro / Centro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+                        <div class="ida col-md-12">
+                            <h3 class="text-center panel localsaida">Dias Úteis</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+                            <div class="divTableRow">
+<div class="divTableCell">04:25</div>
+<div class="divTableCell">04:45</div>
+<div class="divTableCell">05:05</div>
+<div class="divTableCell">05:20</div>
+<div class="divTableCell">05:35</div>
+<div class="divTableCell">05:50</div>
+<div class="divTableCell">06:05</div>
+<div class="divTableCell">06:20</div>
+<div class="divTableCell">06:35</div>
+<div class="divTableCell">06:50</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">07:05</div>
+<div class="divTableCell">07:20</div>
+<div class="divTableCell">07:35</div>
+<div class="divTableCell">07:50</div>
+<div class="divTableCell">08:04</div>
+<div class="divTableCell">08:24</div>
+<div class="divTableCell">08:44</div>
+<div class="divTableCell">09:04</div>
+<div class="divTableCell">09:22</div>
+<div class="divTableCell">09:39</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">09:54</div>
+<div class="divTableCell">10:12</div>
+<div class="divTableCell">10:32</div>
+<div class="divTableCell">10:52</div>
+<div class="divTableCell">11:11</div>
+<div class="divTableCell">11:29</div>
+<div class="divTableCell">11:46</div>
+<div class="divTableCell">12:06</div>
+<div class="divTableCell">12:24</div>
+<div class="divTableCell">12:44</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">13:04</div>
+<div class="divTableCell">13:24</div>
+<div class="divTableCell">13:38</div>
+<div class="divTableCell">13:53</div>
+<div class="divTableCell">14:10</div>
+<div class="divTableCell">14:28</div>
+<div class="divTableCell">14:48</div>
+<div class="divTableCell">15:08</div>
+<div class="divTableCell">15:28</div>
+<div class="divTableCell">15:45</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">16:03</div>
+<div class="divTableCell">16:18</div>
+<div class="divTableCell">16:33</div>
+<div class="divTableCell">16:47</div>
+<div class="divTableCell">17:01</div>
+<div class="divTableCell">17:16</div>
+<div class="divTableCell">17:31</div>
+<div class="divTableCell">17:46</div>
+<div class="divTableCell">18:01</div>
+<div class="divTableCell">18:15</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">18:30</div>
+<div class="divTableCell">18:45</div>
+<div class="divTableCell">19:00</div>
+<div class="divTableCell">19:20</div>
+<div class="divTableCell">20:00</div>
+<div class="divTableCell">20:20</div>
+<div class="divTableCell">20:40</div>
+<div class="divTableCell">21:00</div>
+<div class="divTableCell">21:20</div>
+<div class="divTableCell">21:40</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">22:00</div>
+<div class="divTableCell">22:20</div>
+<div class="divTableCell">22:40</div>
+<div class="divTableCell">23:00</div>
+<div class="divTableCell">23:20</div>
+<div class="divTableCell">23:40</div>
+</div>
+
+                            </div>
+                            </div>
+                        </div>
+                        <div class="volta col-md-12">
+                            <h3 class="text-center panel localsaida">Sábados e Domingos</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+                            <div class="divTableRow">
+<div class="divTableCell">04:02</div>
+<div class="divTableCell">04:22</div>
+<div class="divTableCell">04:42</div>
+<div class="divTableCell">05:02</div>
+<div class="divTableCell">05:22</div>
+<div class="divTableCell">05:42</div>
+<div class="divTableCell">06:02</div>
+<div class="divTableCell">06:17</div>
+<div class="divTableCell">06:32</div>
+<div class="divTableCell">06:47</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">07:02</div>
+<div class="divTableCell">07:17</div>
+<div class="divTableCell">07:32</div>
+<div class="divTableCell">07:47</div>
+<div class="divTableCell">08:02</div>
+<div class="divTableCell">08:17</div>
+<div class="divTableCell">08:32</div>
+<div class="divTableCell">08:47</div>
+<div class="divTableCell">09:02</div>
+<div class="divTableCell">09:22</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">09:42</div>
+<div class="divTableCell">10:02</div>
+<div class="divTableCell">10:22</div>
+<div class="divTableCell">10:42</div>
+<div class="divTableCell">11:02</div>
+<div class="divTableCell">11:17</div>
+<div class="divTableCell">11:32</div>
+<div class="divTableCell">11:47</div>
+<div class="divTableCell">12:02</div>
+<div class="divTableCell">12:17</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">12:32</div>
+<div class="divTableCell">12:47</div>
+<div class="divTableCell">13:02</div>
+<div class="divTableCell">13:22</div>
+<div class="divTableCell">13:40</div>
+<div class="divTableCell">14:00</div>
+<div class="divTableCell">14:20</div>
+<div class="divTableCell">14:40</div>
+<div class="divTableCell">15:00</div>
+<div class="divTableCell">15:20</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">15:40</div>
+<div class="divTableCell">16:00</div>
+<div class="divTableCell">16:20</div>
+<div class="divTableCell">16:40</div>
+<div class="divTableCell">17:00</div>
+<div class="divTableCell">17:20</div>
+<div class="divTableCell">17:40</div>
+<div class="divTableCell">18:00</div>
+<div class="divTableCell">18:20</div>
+<div class="divTableCell">18:40</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">19:00</div>
+<div class="divTableCell">19:20</div>
+<div class="divTableCell">19:40</div>
+<div class="divTableCell">20:00</div>
+<div class="divTableCell">20:20</div>
+<div class="divTableCell">20:40</div>
+<div class="divTableCell">21:00</div>
+<div class="divTableCell">21:20</div>
+<div class="divTableCell">21:40</div>
+<div class="divTableCell">22:00</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">22:20</div>
+<div class="divTableCell">22:40</div>
+<div class="divTableCell">23:00</div>
+<div class="divTableCell">23:20</div>
+<div class="divTableCell">23:40</div>
+<div class="divTableCell">14:00</div>
+<div class="divTableCell">14:20</div>
+<div class="divTableCell">14:40</div>
+<div class="divTableCell">14:00</div>
+<div class="divTableCell">14:20</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">14:40</div>
+                            </div>
+
+                            </div>
+                            </div>
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>    
+          
+        </div>
+      </div>
+    </div>
+
+     <!-- Modal 3-->
+
+    <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">315  - Estação Barreiro / Barreiro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+                        <div class="ida col-md-12">
+                            <h3 class="text-center panel localsaida">Dias Úteis</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+                            <div class="divTableRow">
+<div class="divTableCell">05:10</div>
+<div class="divTableCell">05:30</div>
+<div class="divTableCell">05:50</div>
+<div class="divTableCell">06:10</div>
+<div class="divTableCell">06:30</div>
+<div class="divTableCell">06:50</div>
+<div class="divTableCell">07:10</div>
+<div class="divTableCell">07:30</div>
+<div class="divTableCell">07:50</div>
+<div class="divTableCell">08:10</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">08:40</div>
+<div class="divTableCell">09:10</div>
+<div class="divTableCell">09:40</div>
+<div class="divTableCell">10:10</div>
+<div class="divTableCell">10:40</div>
+<div class="divTableCell">11:10</div>
+<div class="divTableCell">11:40</div>
+<div class="divTableCell">12:10</div>
+<div class="divTableCell">12:40</div>
+<div class="divTableCell">13:10</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">13:40</div>
+<div class="divTableCell">12:10</div>
+<div class="divTableCell">12:40</div>
+<div class="divTableCell">13:10</div>
+<div class="divTableCell">13:40</div>
+<div class="divTableCell">14:10</div>
+<div class="divTableCell">14:40</div>
+<div class="divTableCell">15:10</div>
+<div class="divTableCell">15:40</div>
+<div class="divTableCell">16:10</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">16:30</div>
+<div class="divTableCell">16:50</div>
+<div class="divTableCell">17:10</div>
+<div class="divTableCell">17:30</div>
+<div class="divTableCell">17:50</div>
+<div class="divTableCell">18:10</div>
+<div class="divTableCell">18:30</div>
+<div class="divTableCell">18:50</div>
+<div class="divTableCell">19:10</div>
+<div class="divTableCell">19:40</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">20:10</div>
+<div class="divTableCell">20:40</div>
+<div class="divTableCell">21:10</div>
+<div class="divTableCell">21:40</div>
+<div class="divTableCell">22:10</div>
+<div class="divTableCell">22:40</div>
+<div class="divTableCell">23:10</div>
+<div class="divTableCell">23:40</div>
+                            </div>
+
+                            </div>
+                            </div>
+                        </div>
+                        <div class="volta col-md-12">
+                            <h3 class="text-center panel localsaida">Sábados e Domingos</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+                            <div class="divTableRow">
+<div class="divTableCell">05:00</div>
+<div class="divTableCell">05:30</div>
+<div class="divTableCell">05:00</div>
+<div class="divTableCell">06:20</div>
+<div class="divTableCell">06:40</div>
+<div class="divTableCell">07:00</div>
+<div class="divTableCell">07:20</div>
+<div class="divTableCell">07:40</div>
+<div class="divTableCell">08:00</div>
+<div class="divTableCell">08:20</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">08:40</div>
+<div class="divTableCell">09:00</div>
+<div class="divTableCell">09:30</div>
+<div class="divTableCell">10:00</div>
+<div class="divTableCell">10:30</div>
+<div class="divTableCell">11:00</div>
+<div class="divTableCell">11:20</div>
+<div class="divTableCell">11:40</div>
+<div class="divTableCell">12:00</div>
+<div class="divTableCell">12:20</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">12:40</div>
+<div class="divTableCell">13:00</div>
+<div class="divTableCell">13:30</div>
+<div class="divTableCell">14:00</div>
+<div class="divTableCell">14:30</div>
+<div class="divTableCell">15:00</div>
+<div class="divTableCell">15:30</div>
+<div class="divTableCell">16:00</div>
+<div class="divTableCell">16:30</div>
+<div class="divTableCell">17:00</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">17:30</div>
+<div class="divTableCell">18:00</div>
+<div class="divTableCell">18:30</div>
+<div class="divTableCell">19:00</div>
+<div class="divTableCell">19:30</div>
+<div class="divTableCell">20:00</div>
+<div class="divTableCell">20:30</div>
+<div class="divTableCell">21:00</div>
+<div class="divTableCell">21:30</div>
+<div class="divTableCell">22:00</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">22:30</div>
+<div class="divTableCell">23:00</div>
+<div class="divTableCell">23:30</div>
+                            </div>
+                            </div>
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>    
+          
+        </div>
+      </div>
+    </div>
+	</div>
+
+    <!-- Modal 4-->
+    <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">6031 - Cidade Administrativa/Centro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+                        <div class="ida col-md-12">
+                            <h3 class="text-center panel localsaida">Dias Úteis</h3>
+                            <div class="divTable" style="width: 100%;border: 1px solid #000;" >
+                            <div class="divTableBody">
+
+                            <div class="divTableRow">
+<div class="divTableCell">06:35</div>
+<div class="divTableCell">06:55</div>
+<div class="divTableCell">07:15</div>
+<div class="divTableCell">07:35</div>
+<div class="divTableCell">07:55</div>
+<div class="divTableCell">08:15</div>
+<div class="divTableCell">08:35</div>
+<div class="divTableCell">08:55</div>
+<div class="divTableCell">09:15</div>
+<div class="divTableCell">09:35</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">10:00</div>
+<div class="divTableCell">11:00</div>
+<div class="divTableCell">12:00</div>
+<div class="divTableCell">13:00</div>
+<div class="divTableCell">14:15</div>
+<div class="divTableCell">15:05</div>
+<div class="divTableCell">16:10</div>
+<div class="divTableCell">16:30</div>
+<div class="divTableCell">16:50</div>
+<div class="divTableCell">17:05</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">17:25</div>
+<div class="divTableCell">17:50</div>
+<div class="divTableCell">18:05</div>
+<div class="divTableCell">19:00</div>
+                            </div>
+
+                            </div>
+                            </div>
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>    
+          
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- Bootstrap tether Core JavaScript -->
+   
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+   
+    <!--Menu sidebar -->
+    <script src="dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dist/js/custom.min.js"></script>
+
+
+    <!--This page JavaScript -->
+    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+ 
+   
+   
+
+</body>
+
+</html>

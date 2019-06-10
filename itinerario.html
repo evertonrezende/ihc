@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <title>Itinerários</title>
+    
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    
+    
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <script src="dist/js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+ function page_disa() {
+        var url;
+        var location = document.getElementById("op").selectedIndex;
+        if (location == 0) {
+            alert('Por favor, selecione o número da linha!');
+            return false;
+        }
+        else if(location == 1){
+           
+            document.getElementById("btnItinerario").dataset.target = "#modal1";
+        }
+        else if(location == 2){
+           
+            document.getElementById("btnItinerario").dataset.target = "#modal2";
+        }
+         else if(location == 3){
+           
+            document.getElementById("btnItinerario").dataset.target = "#modal3";
+        }
+         else {
+           
+            document.getElementById("btnItinerario").dataset.target = "#modal4";
+        }
+       
+        
+    }
+</script>
+ 
+</head>
+
+<body>
+    
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    
+    <div id="main-wrapper">
+       
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- Isso é para a alternância da barra lateral visível apenas no celular -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+                        <b class="logo-icon p-l-10"> 
+                            <img src="assets/images/logo_itrans_branco.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <span class="logo-text">
+                            
+                             <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" /> 
+                        </span>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Fim Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                     
+                        
+                    </ul>
+                        
+                </div>
+            </nav>
+        </header>
+       
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Menu de navegação-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                        <li class="sidebar-item"> <a class="sidebar-link  sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Página Principal</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="eventos.html" aria-expanded="false"><i class="mdi mdi-alert-circle-outline"></i><span class="hide-menu">Alterações no trãnsito</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="horarios.html" aria-expanded="false"><i class="mdi mdi-clock"></i><span class="hide-menu">Horários</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="itinerario.html" aria-expanded="false"><i class="mdi mdi-arrow-expand"></i><span class="hide-menu">Itinerários</span></a></li>
+						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="mapa.html" aria-expanded="false"><i class="mdi mdi-map"></i><span class="hide-menu">Mapas de Itinerários</span></a></li>
+                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="perguntas.html" aria-expanded="false"><i class="mdi mdi-calendar-question"></i><span class="hide-menu">Perguntas Frequentes</span></a></li>
+						
+                    </ul>
+                </nav>
+                <!-- Fim Menu de navegação -->
+            </div>
+            <!-- Fim Sidebar scroll-->
+        </aside>
+      
+        <div class="page-wrapper">
+            
+            
+
+
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <h2 class="card-title">Itinerários</h2>
+                                <div class="form-group row">
+                                    <p style="margin-left: 10px;">Aqui você fica sabendo os itinerários dos ônibus que circulam na Grande BH.
+                                    </p>
+                                    <div class="col-md-9">
+                                        <select id="op" class="select2 form-control custom-select">
+                                            <option value="0" disabled selected>Selecione o número da linha</option> 
+                                                <option value="1">30   - Estação Diamante / Centro</option>
+                                                <option value="2">35   - Estação Barreiro / Centro</option> 
+                                                <option value="3">315  - Estação Barreiro / Barreiro</option>
+                                                <option value="4">6031 - Cidade Administrativa/Centro</option>
+                                        </select>
+                                        <p></p>
+                                        
+                                        <button type="button" id="btnItinerario" class="btn btn-primary" data-toggle="modal" data-target="" onclick="page_disa()">
+                                        Visualizar </button>    
+                                    </div><!-- End col-md-9  -->
+                                </div><!-- End form-group row  -->
+                                
+                             </div>  <!-- End card-body  --> 
+                        </div><!-- End card  -->
+                    </div> <!-- End col-md-12  -->
+                </div> <!-- End row  -->
+               
+            </div>  <!-- End container fluid  -->
+               
+              
+            
+        </div> <!-- Fim page-wrapper -->
+       
+    </div> <!-- Fim main-wrapper -->
+    
+<!-- Modal 1-->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Linha 30 - Estação Diamante - Centro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+                        <div class="ida col-md-6">
+                            <h3 class="ida-titulo">Ida</h3>
+                            <div class="ida-conteudo">
+                                <div class="rua">1 - Estação Diamante</div>
+                                <div class="rua">2 - Rua José Furtado Nunes</div>
+                                <div class="rua">3 - Av. João Rolla Filho</div>
+                                <div class="rua">4 - Av. Waldyr Soeiro Emrich</div>
+                                <div class="rua">5 - Av. Eliseu Resende</div>
+                                <div class="rua">6 - Rua Itamar Teixeira</div>
+                                <div class="rua">7 - Av. Efigênia Miranda Schettino</div>
+                                <div class="rua">8 - Av. Teresa Cristina</div>
+                                <div class="rua">9 - Rua Campos Sales</div>
+                                <div class="rua">10 - Rua José de Alencar</div>
+                                <div class="rua">11 - Av. Amazonas</div>
+                                <div class="rua">12 - Praça Raul Soares</div>
+                                <div class="rua">13 - Av. Amazonas</div>
+                                <div class="rua">14 - Rua Espirito Santo</div>
+
+                            </div>    
+                        </div>
+                        <div class="volta col-md-6">
+                            <h3 class="volta-titulo">Volta</h3>
+                            <div class="volta-conteudo">
+                                <div class="rua">1 - Av. Amazonas</div>
+                                <div class="rua">2 - Av. Teresa Cristina</div>
+                                <div class="rua">3 - Av. Efigênia Miranda Schettino</div>
+                                <div class="rua">4 - Rua Ursula Paulino</div>
+                                <div class="rua">5 - Av. Waldyr Soreiro Emrich</div>
+                                <div class="rua">6 - Rua José Furtado Nunes</div>
+                                <div class="rua">7 - Estação Diamante</div>
+
+                            </div>  
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>    
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2-->
+
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Linha 35 - Estação Barreiro - Centro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                        <div class="ida col-md-6">
+                            <h3 class="ida-titulo">Ida</h3>
+                            <div class="ida-conteudo">
+                                <div class="rua">1 - Estação Barreiro</div>
+                                <div class="rua">2 - Rua Boaventura Costa</div>
+                                <div class="rua">3 - Av. Teresa Cristina</div>
+                                <div class="rua">4 - Rua Arquiteto Morandi</div>
+                                <div class="rua">5 - Rua Garcia Rodrigues</div>
+                                <div class="rua">6 - Rua Visconde Ouro preto</div>
+                                <div class="rua">7 - Padre Machado</div>
+                                <div class="rua">8 - Av. Tito Fulgêncio</div>
+                                <div class="rua">9 - Av. Gal. David Sarnoff</div>
+                                <div class="rua">10 - Praça Papa João XXIII</div>
+                                <div class="rua">11 - Av. Cardeal Eugêncio Pacelli</div>
+                                <div class="rua">12 - Av. Amazonas</div>
+                                <div class="rua">13 - Rua Espírito Santo</div>
+                                <div class="rua">14 - Rua dos Caetés</div>
+
+                            </div>    
+                        </div>
+                        <div class="volta col-md-6">
+                            <h3 class="volta-titulo">Volta</h3>
+                            <div class="volta-conteudo">
+                                <div class="rua">1 - Av. Amazonas</div>
+                                <div class="rua">2 - Av. Cardeal Eugêncio Pacelli</div>
+                                <div class="rua">3 - Praça Papa João XXIII</div>
+                                <div class="rua">4 - Av. Gal. David Sarnoff</div>
+                                <div class="rua">5 - Av. Tito Fulgêncio</div>
+                                <div class="rua">6 - Rua Arquiteto Morandi</div>
+                                <div class="rua">7 - Av. Teresa Cristina</div>
+                                <div class="rua">8 - Rua José Gonçalves</div>
+                                <div class="rua">9 - Rua Boaventura Costa</div>
+                                <div class="rua">10 - Estação Barreiro</div>
+
+                            </div>  
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>   
+          
+        </div>
+      </div>
+    </div>
+
+     <!-- Modal 3-->
+
+    <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Linha 315 - Estação Barreiro - Barreiro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                        <div class="ida col-md-6">
+                            <h3 class="ida-titulo">Circular</h3>
+                            <div class="ida-conteudo">
+                                <div class="rua">1 - Estação Barreiro</div>
+                                <div class="rua">2 - Rua Boaventura Costa</div>
+                                <div class="rua">3 - Av. Afonso Vaz de Melo</div>
+                                <div class="rua">4 - Rua Madre Paulina</div>
+                                <div class="rua">5 - Rua Dona Ambrozina</div>
+                                <div class="rua">6 - Rua Amilcar Quintela</div>
+                                <div class="rua">7 - Rua Maria Elizabet Pessoa</div>
+                                <div class="rua">8 - Rua Alcindo Gonçalves Cotta</div>
+                                <div class="rua">9 - Rua Carmelita India do Brasil</div>
+                                <div class="rua">10 - Rua Coração de Jesus</div>
+                                <div class="rua">11 - Rua Risoleta Fernandes</div>
+                                <div class="rua">12 - Av. Afonso Vaz de Melo</div>
+                                <div class="rua">13 - Sinfrônio Brochado</div>
+                                <div class="rua">14 - Av. Visconde de Ibituruna</div>
+                                <div class="rua">15 - Av. Afonso Vaz de Melo</div>
+								<div class="rua">16 - Estação Barreiro</div>
+
+                            </div>    
+                        </div>
+ 
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>  
+             
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 4-->
+    <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Linha 6031 - Cidade Administrativa - Centro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+                        <div class="ida col-md-6">
+                            <h3 class="ida-titulo">Ida</h3>
+                            <div class="ida-conteudo">
+                                <div class="rua">1 - Cidade Administrativa</div>
+                                <div class="rua">2 - Rodovia Papa João Paulo II</div>
+                                <div class="rua">3 - Av. Dom Pedro Primeiro</div>
+                                <div class="rua">4 - Av. Presidente Antônio Carlos</div>
+                                <div class="rua">5 - Viaduto Nansen Araújo</div>
+                                <div class="rua">6 - Av. Oiapoque</div>
+                                <div class="rua">7 - Rua São Paulo</div>
+                                <div class="rua">8 - Av. Santos Dumont</div>
+                                <div class="rua">9 - Praça Rio Branco</div>
+                                <div class="rua">10 - Avenida Paraná</div>
+
+                            </div>    
+                        </div>
+                        <div class="volta col-md-6">
+                            <h3 class="volta-titulo">Volta</h3>
+                            <div class="volta-conteudo">
+                                <div class="rua">1 - Avenida Paraná</div>
+                                <div class="rua">2 - Praça Rio Branco</div>
+                                <div class="rua">3 - Av. Santos Dumont</div>
+                                <div class="rua">4 - Rua São Paulo</div>
+                                <div class="rua">5 - Av. Oiapoque</div>
+                                <div class="rua">6 - Viaduto Nansen Araújo</div>
+                                <div class="rua">7 - Av. Presidente Antônio Carlos</div>
+                                <div class="rua">8 - Av. Dom Pedro Primeiro</div>
+                                <div class="rua">9 - Rodovia Papa João Paulo II</div>
+                                <div class="rua">10 - Cidade Administrativa</div>
+
+                            </div>  
+                        </div>    
+                </div>
+          </div>
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>    
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap tether Core JavaScript -->
+   
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+   
+    <!--Menu sidebar -->
+    <script src="dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dist/js/custom.min.js"></script>
+
+
+    <!--This page JavaScript -->
+    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+ 
+   
+   
+
+</body>
+
+</html>
